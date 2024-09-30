@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const navItems = {
+const navItems: Record<string, { name: string }> = {
   "/": {
     name: "home",
   },
@@ -9,7 +9,7 @@ const navItems = {
   },
 };
 
-export function Navbar() {
+export function Navbar(): Readonly<React.ReactNode> {
   return (
     <aside className="-ml-[8px] mb-16 tracking-tight">
       <div className="lg:sticky lg:top-20">

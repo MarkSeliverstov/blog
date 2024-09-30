@@ -3,12 +3,12 @@ import localFont from "next/font/local";
 import { Navbar } from "./components/navbar";
 import "./globals.css";
 
-const geistSans = localFont({
+const geistSans: any = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono = localFont({
+const geistMono: any = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",

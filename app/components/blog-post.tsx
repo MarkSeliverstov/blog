@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 
-export function BlogPosts() {
-  let allBlogs = getBlogPosts();
+export function BlogPosts(): Readonly<React.ReactNode> {
+  let allBlogs: MdxFile[] = getBlogPosts();
 
   return (
     <div>
