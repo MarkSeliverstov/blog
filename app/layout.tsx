@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { Navbar } from "./components/navbar";
 import "./globals.css";
+import localFont from "next/font/local";
+import type { Metadata } from "next";
+import { Navbar } from "./components/navbar";
+import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 
-const geistSans: any = localFont({
+const geistSans: NextFontWithVariable = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-const geistMono: any = localFont({
+const geistMono: NextFontWithVariable = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",

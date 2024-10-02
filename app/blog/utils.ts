@@ -57,8 +57,8 @@ export function formatDate(
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;
   }
-  let targetDate: Date = new Date(date);
-  let fullDate: string = targetDate.toLocaleString("en-us", {
+  const targetDate: Date = new Date(date);
+  const fullDate: string = targetDate.toLocaleString("en-us", {
     month: "long",
     day: "numeric",
     year: "numeric",

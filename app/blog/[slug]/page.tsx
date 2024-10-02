@@ -1,9 +1,8 @@
-import { notFound } from "next/navigation";
-// import { CustomMDX } from '@/app/components/mdx'
-import { Suspense } from "react";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
+import { CustomMDX } from "@/app/components/mdx";
+import { Suspense } from "react";
 import { baseUrl } from "@/app/sitemap";
+import { notFound } from "next/navigation";
 
 function seoScript(metadata: MdxMetadata, slug: string): string {
   return JSON.stringify({
@@ -24,8 +23,12 @@ function seoScript(metadata: MdxMetadata, slug: string): string {
   });
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+export default function Blog({
+  params,
+}: {
+  params: { slug: string };
+}): Readonly<React.ReactNode> {
+  const post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
   }
@@ -56,7 +59,7 @@ export default function Blog({ params }: { params: { slug: string } }) {
       </div>
       <article className="prose">
         <Suspense fallback={<>Loading...</>}>
-          <MDXRemote {...{ source: post.content }} />
+          <CustomMDX source={post.content} />
         </Suspense>
       </article>
     </section>

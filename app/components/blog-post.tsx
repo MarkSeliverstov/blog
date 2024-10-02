@@ -1,13 +1,14 @@
-import Link from "next/link";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
+import Link from "next/link";
 
 export function BlogPosts(): Readonly<React.ReactNode> {
-  let allBlogs: MdxFile[] = getBlogPosts();
+  const allBlogs: MdxFile[] = getBlogPosts();
 
   return (
     <div>
       {allBlogs
-        .sort( // Sort the posts by date in descending order
+        .sort(
+          // Sort the posts by date in descending order
           (a, b) =>
             new Date(b.metadata.date).getTime() -
             new Date(a.metadata.date).getTime(),
