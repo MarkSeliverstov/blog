@@ -1,38 +1,91 @@
+"use client";
 import Link from "next/link";
 import { ThemeSwitcher } from "./themeSwither";
+import { usePathname } from "next/navigation";
 
 const navItems: Record<string, { name: string }> = {
-  "/": {
-    name: "home",
-  },
   "/blog": {
     name: "blog",
+  },
+  "/projects": {
+    name: "projects",
+  },
+  "/cv": {
+    name: "cv",
+  },
+  "/contacts": {
+    name: "contacts",
   },
 };
 
 export function Navbar(): Readonly<React.ReactNode> {
+  const currPath = usePathname();
+  console.log(currPath);
+  const isActive = (path: string): boolean => currPath.startsWith(path);
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="lg:sticky lg:top-20">
+    <aside className="mb-8">
+      <div className="flex flex-row items-center justify-between">
+        <Link
+          href="/"
+          className="
+            dark:hover:text-neutral-500
+            hover:text-neutral-500
+            flex flex-row 
+            text-3xl font-semibold uppercase
+          "
+        >
+          <span
+            className={
+              isActive("/")
+                ? "text-neutral-900 dark:text-neutral-100"
+                : "text-neutral-500"
+            }
+          >
+            mark.seliverstov.dev
+          </span>
+        </Link>
+        <ThemeSwitcher />
+      </div>
+      <div>
         <nav
-          className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative w-full"
+          className="
+            flex 
+            flex-row 
+            uppercase text-sm 
+            font-semibold
+            text-neutral-600 
+            dark:text-neutral-300
+          "
           id="nav"
         >
-          <div className="flex flex-row space-x-0 pr-10">
+          <div className="flex flex-row space-x-2 pt-2">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
                   key={path}
                   href={path}
-                  className="transition-all hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative py-1 px-2 m-1"
+                  className="
+                    dark:hover:text-neutral-300
+                    hover:text-neutral-700
+                    text-neutral-500
+                    underline
+                    underline-offset-4
+                    rounded-md 
+                    text-base
+                  "
                 >
-                  {name}
+                  <span
+                    className={
+                      isActive(path)
+                        ? "text-neutral-900 dark:text-neutral-100"
+                        : "text-neutral-500"
+                    }
+                  >
+                    {name}
+                  </span>
                 </Link>
               );
             })}
-          </div>
-          <div className="ml-auto">
-            <ThemeSwitcher />
           </div>
         </nav>
       </div>
