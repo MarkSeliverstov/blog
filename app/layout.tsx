@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { Navbar } from "./components/navbar";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
+import { Providers } from "./providers";
 
 const geistSans: NextFontWithVariable = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,10 +33,13 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.className} antialiased`}
+      suppressHydrationWarning
     >
       <body className="max-w-2xl mx-4 mt-8 lg:mx-auto">
-        <Navbar />
-        <main>{children}</main>
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );
