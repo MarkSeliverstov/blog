@@ -7,8 +7,16 @@
   color: #fefefe;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
 html {
   min-width: 360px;
+/* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 body {
@@ -63,6 +71,10 @@ body {
 
 .prose h1 {
   @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+}
+
+h1 {
+  @apply font-semibold text-2xl mb-8 tracking-tighter;
 }
 
 .prose h2 {
