@@ -11,22 +11,8 @@ html {
   min-width: 360px;
 }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply antialiased bg-neutral-50 dark:bg-neutral-950 text-neutral-800 dark:text-neutral-200;
 }
 
 @layer utilities {
@@ -80,7 +66,7 @@ body {
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-2xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h3 {
@@ -103,11 +89,11 @@ body {
   @apply list-decimal pl-6;
 }
 
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
-}
+/* Override removing top margin, causing layout shift */
+/* .prose > :first-child { */
+/*   margin-top: 1.25em !important; */
+/*   margin-bottom: 1.25em !important; */
+/* } */
 
 .prose pre {
   @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;

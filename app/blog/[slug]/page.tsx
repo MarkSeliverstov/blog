@@ -42,19 +42,14 @@ export default function Blog({
           __html: seoScript(post.metadata, post.slug),
         }}
       />
-      <h1 className="title font-semibold text-2xl tracking-tighter">
+      <h1 className="title font-semibold text-4xl tracking-tighter">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
+      <div className="flex justify-between items-center mb-8 mt-2 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.date)}
           {post.metadata.tags.length > 0 &&
             ` · [ ${post.metadata.tags.join(", ")} ]`}
-        </p>
-      </div>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          Summary: {post.metadata.summary}
         </p>
       </div>
       <article className="prose">
