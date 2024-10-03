@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 export default function Page(): Readonly<React.ReactNode> {
   return (
     <section>
-      <h1 className="font-semibold text-2xl mb-8 tracking-tighter">Blog</h1>
+      <p className="text-neutral-900 dark:text-neutral-100 text-lg mb-8">
+        I believe that writing is a great way to learn and share knowledge,
+        so I write about software, technology, and other things that interest me.
+      </p>
       <BlogPosts />
     </section>
   );
