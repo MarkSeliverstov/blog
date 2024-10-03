@@ -33,8 +33,6 @@ function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
       <div className="flex justify-between items-center mb-4 mt-2 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.date)}
-          {post.metadata.tags.length > 0 &&
-            ` · [ ${post.metadata.tags.join(", ")} ]`}
         </p>
       </div>
     </div>
