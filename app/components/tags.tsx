@@ -8,7 +8,7 @@ export function Tags({
   return (
     <div className="w-full flex flex-row space-x-2 items-center pt-2">
       {names.map((tag) => (
-        <Tag name={tag} />
+        <Tag name={tag} key={tag} />
       ))}
     </div>
   );
