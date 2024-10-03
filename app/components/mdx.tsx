@@ -40,7 +40,6 @@ function RoundedImage({
   alt: string;
   src: string;
 }): React.ReactElement {
-  console.log(rest);
   return <img alt={alt} {...rest} />;
 }
 

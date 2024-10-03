@@ -63,7 +63,6 @@ export function formatDate(
     day: "numeric",
     year: "numeric",
   });
-  console.log(includeRelative);
   return includeRelative
     ? `${getRelativeDate(targetDate) ?? fullDate}`
     : fullDate;

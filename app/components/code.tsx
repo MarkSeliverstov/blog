@@ -14,7 +14,6 @@ function get_highlighted_code(
     }
     return hljs.highlightAuto(code).value;
   } catch {
-    console.error(code);
     return hljs.highlight(code, { language: "plaintext" }).value;
   }
 }
