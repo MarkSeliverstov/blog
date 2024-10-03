@@ -32,22 +32,16 @@ export function getBlogPosts(): MdxFile[] {
   return getMDXData(blogPostsPath);
 }
 
-function getRelativeDate(targetDate: Date): string {
+function getRelativeDate(targetDate: Date): string | null {
   const currentDate: Date = new Date();
-  const yearsAgo: number = currentDate.getFullYear() - targetDate.getFullYear();
-  const monthsAgo: number = currentDate.getMonth() - targetDate.getMonth();
   const daysAgo: number = currentDate.getDate() - targetDate.getDate();
-
-  if (yearsAgo > 0) {
-    return `${yearsAgo}y ago`;
+  if (daysAgo === 0) {
+    return `Today`;
   }
-  if (monthsAgo > 0) {
-    return `${monthsAgo}mo ago`;
+  if (daysAgo === 1) {
+    return `Yesterday`;
   }
-  if (daysAgo > 0) {
-    return `${daysAgo}d ago`;
-  }
-  return "Today";
+  return null;
 }
 
 export function formatDate(
@@ -63,8 +57,8 @@ export function formatDate(
     day: "numeric",
     year: "numeric",
   });
-
+  console.log(includeRelative);
   return includeRelative
-    ? `${fullDate} (${getRelativeDate(targetDate)})`
+    ? `${getRelativeDate(targetDate) ?? fullDate}`
     : fullDate;
 }
