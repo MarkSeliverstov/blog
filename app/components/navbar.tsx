@@ -31,7 +31,8 @@ export function Navbar(): Readonly<React.ReactNode> {
             dark:hover:text-neutral-500
             hover:text-neutral-500
             flex flex-row 
-            text-3xl font-semibold uppercase
+            text-2xl
+            md:text-4xl font-semibold uppercase
           "
         >
           <span
@@ -72,6 +73,7 @@ export function Navbar(): Readonly<React.ReactNode> {
                     underline-offset-4
                     rounded-md 
                     text-base
+                    md:text-lg
                   "
                 >
                   <span
