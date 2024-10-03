@@ -2,8 +2,9 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-function getMDXData(dir: string): MdxFile[] {
-  return fs
+function getMdxBlogData(dir: string): BlogData {
+  const tags: string[] = [];
+  const files: MdxFile[] = fs
     .readdirSync(dir)
     .filter((file: string) => path.extname(file) === ".mdx")
     .map((file: string) => {
@@ -13,6 +14,7 @@ function getMDXData(dir: string): MdxFile[] {
       const metadata: MdxMetadata = matterResult.data as MdxMetadata;
       const content: string = matterResult.content;
       const slug: string = path.basename(file, path.extname(file));
+      tags.push(...metadata.tags);
 
       return {
         metadata,
@@ -20,16 +22,20 @@ function getMDXData(dir: string): MdxFile[] {
         content,
       };
     });
+  return {
+    allTags: tags,
+    allPosts: files,
+  };
 }
 
-export function getBlogPosts(): MdxFile[] {
+export function getBlogPosts(): BlogData {
   const blogPostsPath: string = path.join(
     process.cwd(),
     "app",
     "blog",
     "posts",
   );
-  return getMDXData(blogPostsPath);
+  return getMdxBlogData(blogPostsPath);
 }
 
 function getRelativeDate(targetDate: Date): string | null {
@@ -61,4 +67,25 @@ export function formatDate(
   return includeRelative
     ? `${getRelativeDate(targetDate) ?? fullDate}`
     : fullDate;
+}
+
+export function getAllTags(): string[] {
+  const blogPostsPath: string = path.join(
+    process.cwd(),
+    "app",
+    "blog",
+    "posts",
+  );
+  const tags: string[] = [];
+  fs.readdirSync(blogPostsPath)
+    .filter((file: string) => path.extname(file) === ".mdx")
+    .map((file: string) => {
+      const rawContent: string = fs.readFileSync(
+        path.join(blogPostsPath, file),
+        "utf-8",
+      );
+      const matterResult: matter.GrayMatterFile<string> = matter(rawContent);
+      tags.push(...(matterResult.data.tags as string[]));
+    });
+  return tags;
 }

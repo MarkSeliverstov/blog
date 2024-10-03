@@ -3,7 +3,7 @@ import { getBlogPosts } from "@/app/blog/utils";
 export const baseUrl = "https://localhost:3000";
 
 export default async function sitemap() {
-  const blogs = getBlogPosts().map((post) => ({
+  const blogs = getBlogPosts().allPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.metadata.date,
   }));

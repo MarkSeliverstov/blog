@@ -3,6 +3,7 @@ import { CustomMDX } from "@/app/components/mdx";
 import { Suspense } from "react";
 import { baseUrl } from "@/app/sitemap";
 import { notFound } from "next/navigation";
+import { Tags } from "@/app/components/tags";
 
 function seoScript(metadata: MdxMetadata, slug: string): string {
   return JSON.stringify({
@@ -23,12 +24,31 @@ function seoScript(metadata: MdxMetadata, slug: string): string {
   });
 }
 
+function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
+  return (
+    <div>
+      <h1 className="title font-semibold text-4xl tracking-tighter">
+        {post.metadata.title}
+      </h1>
+      <div className="flex justify-between items-center mb-4 mt-2 text-sm">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          {formatDate(post.metadata.date)}
+          {post.metadata.tags.length > 0 &&
+            ` · [ ${post.metadata.tags.join(", ")} ]`}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Blog({
   params,
 }: {
   params: { slug: string };
 }): Readonly<React.ReactNode> {
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+  const post = getBlogPosts().allPosts.find(
+    (post) => post.slug === params.slug,
+  );
   if (!post) {
     notFound();
   }
@@ -42,16 +62,8 @@ export default function Blog({
           __html: seoScript(post.metadata, post.slug),
         }}
       />
-      <h1 className="title font-semibold text-4xl tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="flex justify-between items-center mb-8 mt-2 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.date)}
-          {post.metadata.tags.length > 0 &&
-            ` · [ ${post.metadata.tags.join(", ")} ]`}
-        </p>
-      </div>
+      <BlogTitle post={post} />
+      <Tags names={post.metadata.tags} />
       <article className="prose">
         <Suspense fallback={<>Loading...</>}>
           <CustomMDX source={post.content} />

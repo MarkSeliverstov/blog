@@ -11,3 +11,8 @@ type MdxFile = {
   slug: string;
   content: string;
 };
+
+type BlogData = {
+  allTags: string[];
+  allPosts: MdxFile[];
+};

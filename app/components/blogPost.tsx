@@ -1,12 +1,13 @@
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
+import { Tags } from "./tags";
 import Link from "next/link";
 
 export function BlogPosts(): Readonly<React.ReactNode> {
-  const allBlogs: MdxFile[] = getBlogPosts();
+  const blog: BlogData = getBlogPosts();
 
   return (
     <div>
-      {allBlogs
+      {blog.allPosts
         .sort(
           // Sort the posts by date in descending order
           (a, b) =>
@@ -37,16 +38,7 @@ export function BlogPosts(): Readonly<React.ReactNode> {
               {post.metadata.summary}
             </p>
 
-            <div className="w-full flex flex-row space-x-2 items-center pt-2">
-              {post.metadata.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-800"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <Tags names={post.metadata.tags} />
           </Link>
         ))}
     </div>
