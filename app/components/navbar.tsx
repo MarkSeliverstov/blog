@@ -27,23 +27,19 @@ export function Navbar(): Readonly<React.ReactNode> {
       <div className="flex flex-row items-center justify-between">
         <Link
           href="/"
-          className="
-            dark:hover:text-neutral-500
-            hover:text-neutral-500
+          className={
+            `
+            hover:text-neutral-900 dark:hover:text-neutral-100
             flex flex-row 
             text-2xl
             md:text-4xl font-semibold uppercase
-          "
+          ` +
+            (currPath === "/"
+              ? "text-neutral-900 dark:text-white"
+              : "text-neutral-500")
+          }
         >
-          <span
-            className={
-              isActive("/")
-                ? "text-neutral-900 dark:text-neutral-100"
-                : "text-neutral-500"
-            }
-          >
-            mark.seliverstov.dev
-          </span>
+          mark.seliverstov.dev
         </Link>
         <ThemeSwitcher />
       </div>
@@ -54,8 +50,7 @@ export function Navbar(): Readonly<React.ReactNode> {
             flex-row 
             uppercase text-sm 
             font-semibold
-            text-neutral-600 
-            dark:text-neutral-300
+            text-neutral-600 dark:text-neutral-300
           "
           id="nav"
         >
@@ -65,26 +60,22 @@ export function Navbar(): Readonly<React.ReactNode> {
                 <Link
                   key={path}
                   href={path}
-                  className="
-                    dark:hover:text-neutral-300
-                    hover:text-neutral-700
+                  className={
+                    `
+                    hover:text-neutral-900 dark:hover:text-neutral-100
                     text-neutral-500
                     underline
                     underline-offset-4
                     rounded-md 
                     text-base
                     md:text-lg
-                  "
+                  ` +
+                    (isActive(path)
+                      ? "text-neutral-900 dark:text-neutral-100"
+                      : "text-neutral-500")
+                  }
                 >
-                  <span
-                    className={
-                      isActive(path)
-                        ? "text-neutral-900 dark:text-neutral-100"
-                        : "text-neutral-500"
-                    }
-                  >
-                    {name}
-                  </span>
+                  <span>{name}</span>
                 </Link>
               );
             })}

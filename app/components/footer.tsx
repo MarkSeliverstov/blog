@@ -1,5 +1,4 @@
 import { sourceCodeUrl } from "@/app/sitemap";
-import { FaGithub, FaInstagram, FaRss, FaAt } from "react-icons/fa";
 
 function ArrowIcon() {
   return (
@@ -21,14 +20,14 @@ function ArrowIcon() {
 export default function Footer() {
   return (
     <footer className="mb-4 mt-12 p-4 rounded-lg flex flex-col items-center bg-neutral-100 dark:bg-neutral-900">
-      <p className="font-sm text-neutral-600 dark:text-neutral-300">
+      <p className="font-sm text-neutral-500 dark:text-neutral-300">
         Maintained by Mark Seliverstov
       </p>
 
-      <ul className="font-sm flex text-neutral-600 flex-row space-x-4 dark:text-neutral-300">
+      <ul className="font-sm flex text-neutral-500 flex-row space-x-4 dark:text-neutral-300">
         <li>
           <a
-            className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="flex items-center hover:text-blue-500"
             rel="noopener noreferrer"
             target="_blank"
             href="/rss"
@@ -39,7 +38,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-100"
+            className="flex items-center hover:text-blue-500"
             rel="noopener noreferrer"
             target="_blank"
             href={sourceCodeUrl}
@@ -52,8 +51,8 @@ export default function Footer() {
       <div className="flex flex-row text-neutral-500 dark:text-neutral-300">
         <p className="mt-0">© {new Date().getFullYear()} MIT Licensed</p>
         <span className="mx-2">•</span>
-        <a href="/privacy" className="mt-0">
-          Pryvacy Policy
+        <a href="/privacy" className="mt-0 hover:text-blue-500">
+          Privacy Policy
         </a>
       </div>
     </footer>
