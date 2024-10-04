@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { baseUrl } from "@/app/sitemap";
 import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
+import { Metadata } from "next";
 
 function seoScript(metadata: MdxMetadata, slug: string): string {
   return JSON.stringify({
@@ -24,13 +25,15 @@ function seoScript(metadata: MdxMetadata, slug: string): string {
   });
 }
 
+export const metadata: Metadata = { title: "Post" };
+
 function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
   return (
-    <div>
-      <h1 className="title font-semibold text-4xl tracking-tighter">
+    <div mb-8>
+      <h1 className="title font-semibold text-4xl mb-0">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mb-4 mt-2 text-sm">
+      <div className="flex justify-between items-center mb-2 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
           {formatDate(post.metadata.date)}
         </p>
@@ -62,7 +65,7 @@ export default function Blog({
       />
       <BlogTitle post={post} />
       <Tags names={post.metadata.tags} />
-      <article className="prose">
+      <article className="prose mt-12">
         <Suspense fallback={<>Loading...</>}>
           <CustomMDX source={post.content} />
         </Suspense>
