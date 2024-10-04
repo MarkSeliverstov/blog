@@ -24,7 +24,6 @@ const navItems: Record<string, { name: string, available: boolean }> = {
 
 export function Navbar(): Readonly<React.ReactNode> {
   const currPath = usePathname();
-  console.log(currPath);
   const isActive = (path: string): boolean => currPath.startsWith(path);
   return (
     <aside className="mb-8">
