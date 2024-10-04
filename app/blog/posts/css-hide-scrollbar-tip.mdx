@@ -1,0 +1,22 @@
+---
+title: Hide the scrollbar in CSS
+summary: A quick tip on how to hide the overflow scroll.
+tags: ["CSS/HTML", "tips&tricks"]
+date: "2024-10-04"
+---
+
+Scrollbars...who needs them? It moves the content, which looks ugly and
+distracting. Here's a quick tip on how to hide the scroll bar in CSS.
+
+```css
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+```
