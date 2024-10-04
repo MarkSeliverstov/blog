@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { Navbar } from "./components/navbar";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import { Providers } from "./providers";
-import { Fira_Sans } from 'next/font/google'
+// import { Fira_Sans } from "next/font/google";
 import Footer from "./components/footer";
 
 const geistSans: NextFontWithVariable = localFont({
@@ -12,11 +12,11 @@ const geistSans: NextFontWithVariable = localFont({
   variable: "--font-geist-sans",
   weight: "400",
 });
-const firaSans: NextFontWithVariable = Fira_Sans({
-  variable: "--font-fira-sans",
-  weight: "400",
-  subsets: [],
-});
+// const firaSans: NextFontWithVariable = Fira_Sans({
+//   variable: "--font-fira-sans",
+//   weight: "400",
+//   subsets: [],
+// });
 
 export const metadata: Metadata = {
   title: {
