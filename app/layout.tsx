@@ -5,6 +5,7 @@ import { Navbar } from "./components/navbar";
 import { NextFontWithVariable } from "next/dist/compiled/@next/font";
 import { Providers } from "./providers";
 import { Fira_Sans } from 'next/font/google'
+import Footer from "./components/footer";
 
 const geistSans: NextFontWithVariable = localFont({
   src: "./fonts/GeistVF.woff",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           <main>{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
