@@ -13,7 +13,7 @@ function getMdxBlogData(dir: string): BlogData {
 
       const metadata: MdxMetadata = matterResult.data as MdxMetadata;
       const content: string = matterResult.content;
-      const slug: string = path.basename(file, path.extname(file));
+      const slug: string = path.basename(file, path.extname(file)).replace(".mdx", "");
       tags.push(...metadata.tags);
 
       return {
