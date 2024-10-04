@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "serve out",
     "lint": "next lint",
     "prettify": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "prettify:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md}\""
@@ -27,6 +27,7 @@
     "eslint-config-prettier": "^9.1.0",
     "postcss": "^8.4.47",
     "prettier": "^3.3.3",
+    "serve": "^14.2.3",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"
   }

@@ -6,6 +6,15 @@ import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
 import { Metadata } from "next";
 
+/** Used to generate static pages */
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+
+  return posts.allPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
 function seoScript(metadata: MdxMetadata, slug: string): string {
   return JSON.stringify({
     "@context": "https://schema.org",
