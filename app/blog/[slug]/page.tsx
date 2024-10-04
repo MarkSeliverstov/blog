@@ -65,7 +65,7 @@ export default function Blog({
       />
       <BlogTitle post={post} />
       <Tags names={post.metadata.tags} />
-      <article className="prose mt-12">
+      <article className="prose">
         <Suspense fallback={<>Loading...</>}>
           <CustomMDX source={post.content} />
         </Suspense>
