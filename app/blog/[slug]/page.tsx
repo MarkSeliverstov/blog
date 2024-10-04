@@ -38,7 +38,7 @@ export const metadata: Metadata = { title: "Post" };
 
 function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
   return (
-    <div mb-8>
+    <div>
       <h1 className="title font-semibold text-4xl mb-0">
         {post.metadata.title}
       </h1>
