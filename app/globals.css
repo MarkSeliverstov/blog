@@ -14,9 +14,9 @@ html::-webkit-scrollbar {
 
 html {
   min-width: 360px;
-/* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 body {
@@ -156,4 +156,16 @@ table {
 
 .title {
   text-wrap: balance;
+}
+
+.transparent-with-border {
+  @apply px-2 py-1 rounded-lg border border-neutral-200 dark:border-neutral-700;
+}
+
+.gray-tag {
+  @apply bg-neutral-100 dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 px-2 py-1 rounded-lg;
+}
+
+.gray-tag:hover {
+  @apply hover:bg-neutral-200 dark:hover:bg-neutral-800;
 }
