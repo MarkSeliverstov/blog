@@ -139,6 +139,14 @@ pre::-webkit-scrollbar {
   scrollbar-width: none; /* Firefox */
 }
 
+.prose blockquote {
+  @apply border-l-4 border-neutral-200 dark:border-neutral-700 pl-4 my-4;
+}
+
+.prose strong {
+  @apply font-bold;
+}
+
 /* Remove Safari input shadow on mobile */
 input[type="text"],
 input[type="email"] {
