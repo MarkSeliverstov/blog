@@ -1,0 +1,164 @@
+---
+title: How to type a more complex decorator in python
+summary: Decorators are a powerful feature of Python, but they can be a bit tricky to type correctly. Let's make sure the types are correct.
+tags: ["python", "hints"]
+date: "2024-06-30"
+---
+
+[Decorators (PEP-318)](https://peps.python.org/pep-0318/) are a way to modify
+or extend the behavior of functions or methods without changing their code.
+Decorators are a powerful feature of Python, but they can be a bit tricky to
+type correctly.
+
+> You all have installed mypy with
+> [**--strict**](https://mypy.readthedocs.io/en/stable/command_line.html#cmdoption-mypy-strict)
+> mode by default, right? :D
+
+## Untyped simple example
+
+Let's start with an untyped example of a decorator. Here's a simple decorator
+that prints a message before and after calling a function:
+
+```python
+def my_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Something is happening before the function is called.")
+        result = func(*args, **kwargs)
+        print("Something is happening after the function is called.")
+        return result
+    return wrapper
+
+@my_decorator
+def say_hello(name: str) -> str:
+    return f"Hello, {name}!"
+
+say_hello("BOB")
+# Output:
+# Something is happening before the function is called.
+# Hello, BOB!
+# Something is happening after the function is called.
+```
+
+>To define types, it's important to understand what `*args` and `**kwargs` are.
+They are used to pass a variable number of arguments to a function.
+>- `*args` is used to pass a **non-keyworded (positional)** argument list
+>- `**kwargs` is used to pass a **keyworded (name=value)** argument list
+
+## Let's type the decorator
+
+- [declaring decorators (docs)](https://mypy.readthedocs.io/en/stable/generics.html#declaring-decorators) - useful information about typing decorators.
+- [generics (docs)](https://mypy.readthedocs.io/en/stable/generics.html#generics) - pretty useful thing to know.
+
+```python
+from typing import Callable, ParamSpec, TypeVar
+
+P = ParamSpec('P') # Used to define a generic parameter list
+T = TypeVar('T') # Used to define a generic return type
+
+def my_decorator(func: Callable[P, T]) -> Callable[P, T]:
+    def wrapper(*args: P.args, **kwargs: P.kwargs) -> T:
+        print("Something is happening before the function is called.")
+        result = func(*args, **kwargs)
+        print("Something is happening after the function is called.")
+        return result
+    return wrapper
+```
+> **Note**: `P.args` and `P.kwargs` are used to access the positional and
+> keyword arguments of the generic parameter list.\
+> Also, `Callable[P, T]` is used to define a type alias for a callable with
+> generic parameters.
+
+It is pretty simple, right? We just need to define the generic parameter list
+`P` and the generic return type `T`. After it we can use them to type the
+`func` and `wrapper` functions.
+
+## More complex example
+
+What if we want to use the decorator with a class asynchronyous method
+using inner properties (like `self`)?
+For example, we want to measure the time of the method execution and send it
+to smth like Prometheus. It's looks more complicated, right?
+
+```python
+import asyncio
+import time
+
+def decorator(func):
+    async def async_wrapper(*args, **kwargs):
+        start = time.time()
+        result = await func(*args, **kwargs)
+        # How we can send metrics here if we don't have access to the class properties?
+        #????.send_metrics.observe(time.time() - start)
+        return result
+    return async_wrapper
+
+class Sender:
+    def observe(self, time: float):
+        """ Mock method to send metrics """
+        pass
+
+class App:
+    send_metrics: Sender = Sender()
+
+    @decorator
+    async def async_method(self, name: str) -> str:
+        await asyncio.sleep(1)
+        return f"Hello, {name}!"
+```
+
+**Questions to think about**:
+
+- How can we pass calling class to the decorator to have access to its properties?
+- How can we type the async method in this case?
+
+## Typing the more complex example
+
+So, for the first question, we can just pass the class `App` as an argument to
+the `async_wrapper`(Or we can use `/` ([PEP-570](https://peps.python.org/pep-0570/))
+to enforce positional-only arguments in more complex cases).
+
+```python
+def decorator(func):
+    async def async_wrapper(app, *args, **kwargs) -> str:
+        start = time.time()
+        result = await method(*args, **kwargs)
+        app.send_metrics.observe(time.time() - start)
+        return result
+    return async_wrapper
+```
+
+But what about typing?
+
+```python
+from typing import Awaitable, Callable, Concatenate, ParamSpec, TypeVar
+
+P = ParamSpec("P")
+T = TypeVar("T")
+FUNC_T = Callable[Concatenate["App", P], Awaitable[T]]
+
+
+def decorator(func: FUNC_T[P, T]) -> FUNC_T[P, T]:
+    async def async_wrapper(app: "App", *args: P.args, **kwargs: P.kwargs) -> T:
+        start: float = time.time()
+        result: T = await func(app, *args, **kwargs)
+        app.send_metrics.observe(time.time() - start)
+        return result
+    return async_wrapper
+```
+
+Now we have a fully typed decorator that can be used with async methods in
+classes.
+
+- `async def async_wrapper(self: "App", *args: P.args, **kwargs: P.kwargs)
+  -> T:` - typing `app` as `App` class.
+- `Concatenate["App", P]` - used to concatenate the class and the generic
+  parameter list. So, it means that the first argument of the async method is
+  the class itself.
+- `FUNC_T[P, T]` - used to define a type alias for a callable with generic
+  parameters.
+
+## Conclusion
+
+Decorators are a powerful feature of Python, but sometimes they can be tricky
+to type correctly. I hope this article helped you understand how to type this
+hell 🙂.
