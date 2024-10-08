@@ -2,7 +2,7 @@ export default function Home(): Readonly<React.ReactNode> {
   return (
     <section className="h-screen">
       <div className="flex justify-center flex-col h-4/6">
-        <h1 className="text-6xl">Hello, I'm Mark</h1>
+        <h1 className="text-6xl">Hello, I&apos;m Mark</h1>
         <p className="text-2xl mt-4">
           Software Engineer with a passion for back-end development and cloud
           solutions. If you’re looking to contact me, please see how to get in
