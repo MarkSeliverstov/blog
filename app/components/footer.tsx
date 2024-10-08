@@ -1,4 +1,5 @@
 import { sourceCodeUrl } from "@/app/sitemap";
+import { SiBuymeacoffee } from "react-icons/si";
 
 function ArrowIcon() {
   return (
@@ -19,12 +20,20 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mb-4 mt-12 p-4 rounded-lg flex flex-col items-center bg-neutral-100 dark:bg-neutral-900">
-      <p className="font-sm text-neutral-500 dark:text-neutral-300">
-        Maintained by Mark Seliverstov
-      </p>
+    <footer className="mt-16 mb-4 p-4 rounded-lg flex flex-col items-center bg-neutral-100 dark:bg-neutral-900 text-neutral-500">
+      <p className="font-sm">Maintained by Mark Seliverstov</p>
 
-      <ul className="font-sm flex text-neutral-500 flex-row space-x-4 dark:text-neutral-300">
+      <a
+        className="flex items-center hover:text-blue-500 mb-4 text-neutral-600 dark:text-neutral-400 dark:hover:text-blue-500"
+        rel="noopener noreferrer"
+        target="_blank"
+        href="https://buymeacoffee.com/mark.seliverstov"
+      >
+        <SiBuymeacoffee />
+        <p className="ml-1">buy me a coffee</p>
+      </a>
+
+      <ul className="font-sm flex text-neutral-500 flex-row space-x-4">
         <li>
           <a
             className="flex items-center hover:text-blue-500"
@@ -48,7 +57,7 @@ export default function Footer() {
           </a>
         </li>
       </ul>
-      <div className="flex flex-row text-neutral-500 dark:text-neutral-300">
+      <div className="flex flex-row">
         <p className="mt-0">© {new Date().getFullYear()} MIT Licensed</p>
         <span className="mx-2">•</span>
         <a href="/privacy" className="mt-0 hover:text-blue-500">
