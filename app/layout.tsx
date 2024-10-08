@@ -37,7 +37,7 @@ export default function RootLayout({
       className={`${geistSans.className} antialiased`}
       suppressHydrationWarning
     >
-      <body className="max-w-3xl mx-4 mt-8 md:mx-auto">
+      <body className="max-w-3xl mx-4 mt-8 md:mx-auto font-sans">
         <Providers>
           <Navbar />
           <main>{children}</main>

@@ -4,6 +4,9 @@ import { ThemeSwitcher } from "./themeSwither";
 import { usePathname } from "next/navigation";
 
 const navItems: Record<string, { name: string; href?: string }> = {
+  "/": {
+    name: "whoami",
+  },
   "/blog": {
     name: "blog",
   },
@@ -20,29 +23,12 @@ const navItems: Record<string, { name: string; href?: string }> = {
 
 export function Navbar(): Readonly<React.ReactNode> {
   const currPath = usePathname();
-  const isActive = (path: string): boolean => currPath.startsWith(path);
+  const isActive = (path: string): boolean =>
+    path === "/" ? currPath === "/" : currPath.startsWith(path);
+
   return (
     <aside className="mb-8">
       <div className="flex flex-row items-center justify-between">
-        <Link
-          href="/"
-          className={
-            `
-            hover:text-neutral-900 dark:hover:text-neutral-100
-            flex flex-row 
-            text-2xl
-            md:text-4xl font-semibold uppercase
-          ` +
-            (currPath === "/"
-              ? "text-neutral-900 dark:text-white"
-              : "text-neutral-500")
-          }
-        >
-          mark.seliverstov.dev
-        </Link>
-        <ThemeSwitcher />
-      </div>
-      <div>
         <nav
           className="
             flex 
@@ -53,7 +39,7 @@ export function Navbar(): Readonly<React.ReactNode> {
           "
           id="nav"
         >
-          <div className="flex flex-row space-x-2 pt-2">
+          <div className="flex flex-row space-x-2 md:space-x-4 pt-2">
             {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
@@ -63,8 +49,8 @@ export function Navbar(): Readonly<React.ReactNode> {
                   className={
                     `
                     hover:text-neutral-900 dark:hover:text-neutral-100
+                    hover:underline
                     text-neutral-500
-                    underline
                     underline-offset-4
                     rounded-md 
                     text-base
@@ -81,6 +67,7 @@ export function Navbar(): Readonly<React.ReactNode> {
             })}
           </div>
         </nav>
+        <ThemeSwitcher />
       </div>
     </aside>
   );
