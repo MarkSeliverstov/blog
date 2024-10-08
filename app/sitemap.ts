@@ -1,6 +1,6 @@
 import { getBlogPosts } from "@/app/blog/utils";
 
-export const baseUrl = "https://localhost:3000";
+export const baseUrl = "mark.seliverstov.dev";
 export const sourceCodeUrl = "https://github.com/MarkSeliverstov/blog";
 
 export default async function sitemap() {

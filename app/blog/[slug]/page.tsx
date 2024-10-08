@@ -6,6 +6,55 @@ import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
 import { Metadata } from "next";
 
+/* used to generate metadata for dynamic pages */
+export function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Metadata {
+  const post = getBlogPosts().allPosts.find(
+    (post) => post.slug === params.slug,
+  );
+  if (!post) {
+    return { title: "Post not found" };
+  }
+
+  const {
+    title,
+    date: publishedTime,
+    summary: description,
+    image,
+  } = post.metadata;
+  const ogImage = image
+    ? image
+    : `${baseUrl}/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(
+        description,
+      )}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `${baseUrl}/blog/${post.slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
+
 /** Used to generate static pages */
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -33,8 +82,6 @@ function seoScript(metadata: MdxMetadata, slug: string): string {
     },
   });
 }
-
-export const metadata: Metadata = { title: "Post" };
 
 function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
   return (
