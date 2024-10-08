@@ -3,23 +3,19 @@ import Link from "next/link";
 import { ThemeSwitcher } from "./themeSwither";
 import { usePathname } from "next/navigation";
 
-const navItems: Record<string, { name: string, available: boolean }> = {
+const navItems: Record<string, { name: string; href?: string }> = {
   "/blog": {
     name: "blog",
-    available: true,
   },
-  "/projects": {
-    name: "projects",
-    available: false,
-  },
-  "/cv": {
-    name: "cv",
-    available: false,
-  },
-  "/contacts": {
-    name: "contacts",
-    available: false,
-  },
+  // "/projects": {
+  //   name: "projects",
+  // },
+  // "/assets/pdfs/resume.pdf": {
+  //   name: "resume",
+  // },
+  // "/contacts": {
+  //   name: "contacts",
+  // },
 };
 
 export function Navbar(): Readonly<React.ReactNode> {
@@ -58,14 +54,12 @@ export function Navbar(): Readonly<React.ReactNode> {
           id="nav"
         >
           <div className="flex flex-row space-x-2 pt-2">
-            {Object.entries(navItems).map(([path, { name, available }]) => {
-              // if (!navItems[path].available) {
-              //   return 
-              // }
+            {Object.entries(navItems).map(([path, { name }]) => {
               return (
                 <Link
                   key={path}
-                  href={available ? path : currPath}
+                  href={path}
+                  target={name === "resume" ? "_blank" : undefined}
                   className={
                     `
                     hover:text-neutral-900 dark:hover:text-neutral-100
@@ -78,7 +72,7 @@ export function Navbar(): Readonly<React.ReactNode> {
                   ` +
                     (isActive(path)
                       ? "text-neutral-900 dark:text-neutral-100"
-                      : "text-neutral-500") + (navItems[path].available ? "" : " cursor-not-allowed")
+                      : "text-neutral-500")
                   }
                 >
                   <span>{name}</span>
