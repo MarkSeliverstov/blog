@@ -9,7 +9,7 @@ export function ThemeSwitcher() {
   useEffect(() => {
     setMounted(true);
     setTheme("dark");
-  }, []);
+  }, [setTheme]);
 
   return (
     <button

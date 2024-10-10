@@ -3,7 +3,7 @@ title: "RDF (Resource Description Framework)"
 summary: "The date format, though it might seem confusing or unpopular at first, can actually turn out to be surprisingly useful."
 tags: ["theory", "data-formats"]
 date: "2024-10-10"
-image: "/assets/images/rdf-simple-example.svg"
+image: "/assets/images/rdf-logo.png"
 ---
 
 - [RDF - W3C](https://www.w3.org/RDF/)
@@ -11,6 +11,22 @@ image: "/assets/images/rdf-simple-example.svg"
 - Created by the [World Wide Web Consortium (W3C)](https://www.w3.org/): 2004 (RDF 1.0) and 2014 (RDF 1.1).
 
 ## Introduction
+
+**By the way**: Ever wonder how social media shows those nice previews when you
+share a link? That’s actually RDF at work! Platforms like Facebook and Twitter
+use [Open Graph](https://ogp.me/) metadata, which is built using RDF in HTML.
+It helps them grab the right title, image, and description from the page, so
+your shared links look great! PS: You can check the RDF metadata using
+[Meta Tags Toolkit](https://metatags.io/).
+
+```html
+<meta property="og:title" content="RDF (Resource Description Framework)"/>
+<meta property="og:description" content="The date format, though it might seem confusing or unpopular at first, can actually turn out to be surprisingly useful."/>
+<meta property="og:url" content="https://mark.seliverstov.dev/blog/rdf-data-format"/>
+<meta property="og:image" content="https://mark.seliverstov.dev/assets/images/rdf-logo.png"/>
+```
+
+![Open Graph visualisation of this post](/assets/images/meta-tags-rdf-example.png)
 
 Let’s compare RDF with a more familiar format, like JSON. Imagine you're
 working with movie data.
@@ -30,16 +46,14 @@ In short, RDF is like a smart web of linked information, while JSON is a
 self-contained box of data. RDF shines when you need to query and connect
 diverse datasets easily.
 
-### Go deeper
+## Go deeper
 
 RDF (Resource Description Framework) is a standard model for data interchange
 on the Web. RDF has features that facilitate data merging even if the
 underlying schemas differ, and it specifically supports the evolution of
 schemas over time without requiring all the data consumers to be changed.
 
-## Concepts
-
-#### RDF Triple
+### RDF Triple
 
 RDF is based on the idea of making statements about resources (in particular
 web resources) in expressions of the form subject-predicate-object, known as
@@ -47,7 +61,9 @@ triples. The subject denotes the resource, and the predicate denotes traits or
 aspects of the resource, and expresses a relationship between the subject and
 the object.
 
-#### Basic Example
+![where Anna is subject, owns is predicate, and Toyota is object](/assets/images/rdf-simple-example.png)
+ 
+### Basic Example
 
 ```plaintext
 # Subject Predicate Object
@@ -59,7 +75,7 @@ the object.
 ex:about ex:title "Some Title" .
 ```
 
-#### Relative URIs
+### Relative URIs
 
 ```plaintext
 # Implicit base
@@ -71,7 +87,7 @@ ex:about ex:title "Some Title" .
 <#document> ex:title "Some Title" . -> <http://newbase.org/#document> <http://example.org/title> "Some Title" .
 ```
 
-#### More syntax sugar
+### More syntax sugar
 
 ```plaintext
 # a

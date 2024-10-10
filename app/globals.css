@@ -57,7 +57,11 @@ body {
 }
 
 .prose img {
-  @apply rounded-lg border-neutral-900 dark:border-neutral-200;
+  @apply rounded-lg border-neutral-900 dark:border-neutral-200 mx-auto;
+}
+
+.image-caption {
+  @apply text-neutral-500 text-sm block text-center mt-2;
 }
 
 /* Center images */

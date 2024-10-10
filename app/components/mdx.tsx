@@ -40,7 +40,12 @@ function RoundedImage({
   alt: string;
   src: string;
 }): React.ReactElement {
-  return <img alt={alt} {...rest} />;
+  return (
+    <span>
+      <img alt={alt} {...rest} />
+      {alt && <span className="image-caption">[{alt}]</span>}
+    </span>
+  );
 }
 
 function slugify(str: string): string {
