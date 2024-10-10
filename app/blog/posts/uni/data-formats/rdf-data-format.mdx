@@ -1,0 +1,125 @@
+---
+title: "RDF (Resource Description Framework)"
+summary: "The date format, which is incomprehensible at first glance and not very popular, may surprise you with its usefulness"
+tags: ["theory", "data-formats"]
+date: "2024-10-10"
+image: "/assets/images/rdf-simple-example.svg"
+---
+
+- [RDF - W3C](https://www.w3.org/RDF/)
+- [Cool things with RDF](https://medium.com/@dallemang/jug-o-cool-things-i-do-with-rdf-3cdb5b059192)
+- Created by the [World Wide Web Consortium (W3C)](https://www.w3.org/): 2004 (RDF 1.0) and 2014 (RDF 1.1).
+
+## Introduction
+
+Let’s compare RDF with a more familiar format, like JSON. Imagine you're
+working with movie data.
+
+- With RDF: You can represent complex relationships between entities like
+“director,” “actors,” “release date,” and even connect movies with awards,
+genres, or sequels across different datasets. RDF lets you ask smart questions
+like “Show me all sci-fi movies directed by Christopher Nolan after 2010,”
+because it understands the relationships between those data points.
+
+- With JSON: You can store movie data neatly, but it’s hierarchical and isolated.
+If you want to cross-reference data (like finding all directors who’ve won
+specific awards), you have to manually write logic to link data from multiple
+JSON files.
+
+In short, RDF is like a smart web of linked information, while JSON is a
+self-contained box of data. RDF shines when you need to query and connect
+diverse datasets easily.
+
+### Go deeper
+
+RDF (Resource Description Framework) is a standard model for data interchange
+on the Web. RDF has features that facilitate data merging even if the
+underlying schemas differ, and it specifically supports the evolution of
+schemas over time without requiring all the data consumers to be changed.
+
+## Concepts
+
+#### RDF Triple
+
+RDF is based on the idea of making statements about resources (in particular
+web resources) in expressions of the form subject-predicate-object, known as
+triples. The subject denotes the resource, and the predicate denotes traits or
+aspects of the resource, and expresses a relationship between the subject and
+the object.
+
+#### Basic Example
+
+```plaintext
+# Subject Predicate Object
+<http://example.org/about> <http://example.org/title> "Some Title" .
+
+# OR with prefixes
+
+@prefix ex: <http://example.org/> .
+ex:about ex:title "Some Title" .
+```
+
+#### Relative URIs
+
+```plaintext
+# Implicit base
+@prefix ex: <http://example.org/> .
+<#document> ex:title "Some Title" . -> <http://example.org/#document> <http://example.org/title> "Some Title" .
+
+# Explicit base
+@base <http://newbase.org/> .
+<#document> ex:title "Some Title" . -> <http://newbase.org/#document> <http://example.org/title> "Some Title" .
+```
+
+#### More syntax sugar
+
+```plaintext
+# a
+
+# Class assignment [a is a shortcut for rdf:type or <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>]
+<http://example.org/about> a ex:Document . -> <http://example.org/about> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://example.org/Document> .
+```
+
+```plaintext
+# blank nodes
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+_:alice foaf:knows _:bob .
+_:bob foaf:knows _:alice .
+```
+
+```plaintext
+# list
+@prefix ex: <http://example.org/> .
+ex:about ex:authors ("Alice" "Bob" "Charlie") .
+```
+
+### RDF Schema (RDFS)
+
+Schema for creating another schema. It is a vocabulary for describing
+properties and classes of RDF resources, with semantics for
+generalization-hierarchies of such properties and classes.
+
+```plaintext
+@prefix ex: <http://example.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:Moto a rdfs:Class .
+ex:MiniMoto a rdfs:Class ; # Inheritance
+    rdfs:subClassOf ex:Moto .
+```
+
+## Issues with non-linked data (CSV, JSON, etc.) or Why RDF?
+
+- Ambibuous identification of entities in the data
+  - For example, "John Smith" could refer to multiple people, but in a linked data world, it would be a unique identifier.
+- Low fidelity of data
+  - For example, "John Smith" could be a string, but in a linked data world, it would be a URI.
+- No context
+  - For example, "John Smith" could be a name, but in a linked data world, it would be a URI with a specific context.
+
+### RDF benefits
+
+- It is significantly easier to define big related data sets.
+- It is easier to merge/maintain/update data from different sources.
+- Searchin and querying is easier.
