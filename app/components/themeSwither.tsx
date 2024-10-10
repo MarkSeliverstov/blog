@@ -8,12 +8,8 @@ export function ThemeSwitcher() {
 
   useEffect(() => {
     setMounted(true);
+    setTheme("dark");
   }, []);
-  
-  if (theme === "dark") {
-    // This is a hack to fix the dark theme for code blocks
-    // import "highlight.js/styles/github-dark.css";
-  }
 
   return (
     <button
