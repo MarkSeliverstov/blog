@@ -5,6 +5,7 @@ import { baseUrl } from "@/app/sitemap";
 import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
 import { Metadata } from "next";
+import { BuyMeCoffee } from "@/app/components/buyMeCoffee";
 
 /* used to generate metadata for dynamic pages */
 export function generateMetadata({
@@ -137,6 +138,7 @@ export default function Blog({
         }}
       />
       <BlogImageHeader imagePath={post.metadata.image} />
+      <BuyMeCoffee />
       <BlogTitle post={post} />
       <Tags names={post.metadata.tags} />
       <article className="prose">

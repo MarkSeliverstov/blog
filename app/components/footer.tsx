@@ -1,5 +1,5 @@
 import { sourceCodeUrl } from "@/app/sitemap";
-import { SiBuymeacoffee } from "react-icons/si";
+import { BuyMeCoffee } from "@/app/components/buyMeCoffee";
 
 function ArrowIcon() {
   return (
@@ -23,15 +23,7 @@ export default function Footer() {
     <footer className="mt-16 mb-4 p-4 rounded-lg flex flex-col items-center bg-neutral-100 dark:bg-neutral-900 text-neutral-500">
       <p className="font-sm">Maintained by Mark Seliverstov</p>
 
-      <a
-        className="flex items-center hover:text-blue-500 mb-4 text-neutral-600 dark:text-neutral-400 dark:hover:text-blue-500"
-        rel="noopener noreferrer"
-        target="_blank"
-        href="https://buymeacoffee.com/mark.seliverstov"
-      >
-        <SiBuymeacoffee />
-        <p className="ml-1">buy me a coffee</p>
-      </a>
+      <BuyMeCoffee />
 
       <ul className="font-sm flex text-neutral-500 flex-row space-x-4">
         <li>
