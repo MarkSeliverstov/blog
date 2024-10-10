@@ -2,29 +2,60 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-function getMdxBlogData(dir: string): BlogData {
+function readDirectory(dir: string): { subdirectories: string[], files: MdxFile[], tags: string[] } {
   const tags: string[] = [];
-  const files: MdxFile[] = fs
-    .readdirSync(dir)
-    .filter((file: string) => path.extname(file) === ".mdx")
-    .map((file: string) => {
-      const rawContent: string = fs.readFileSync(path.join(dir, file), "utf-8");
-      const matterResult: matter.GrayMatterFile<string> = matter(rawContent);
+  const files: MdxFile[] = [];
+  const subdirectories: string[] = [];
 
-      const metadata: MdxMetadata = matterResult.data as MdxMetadata;
-      const content: string = matterResult.content;
-      const slug: string = path.basename(file, path.extname(file)).replace(".mdx", "");
-      tags.push(...metadata.tags);
+  fs.readdirSync(dir, { withFileTypes: true }).forEach((dirent: fs.Dirent) => {
+    if (dirent.isDirectory()) {
+      subdirectories.push(path.join(dir, dirent.name));
+    } else if (path.extname(dirent.name) === ".mdx") {
+      const fileData = processMdxFile(dir, dirent.name);
+      tags.push(...fileData.tags);
+      files.push(fileData.file);
+    }
+  });
 
-      return {
-        metadata,
-        slug,
-        content,
-      };
-    });
+  return { subdirectories, files, tags };
+}
+
+function processMdxFile(dir: string, fileName: string): { file: MdxFile, tags: string[] } {
+  const rawContent: string = fs.readFileSync(path.join(dir, fileName), "utf-8");
+  const matterResult: matter.GrayMatterFile<string> = matter(rawContent);
+
+  const metadata: MdxMetadata = matterResult.data as MdxMetadata;
+  const content: string = matterResult.content;
+  const slug: string = path.basename(fileName, path.extname(fileName)).replace(".mdx", "");
+
   return {
-    allTags: tags,
-    allPosts: files,
+    file: {
+      metadata,
+      slug,
+      content,
+    },
+    tags: metadata.tags,
+  };
+}
+
+function gatherSubdirectoryData(subdirectories: string[]): BlogData {
+  return subdirectories.reduce(
+    (acc: BlogData, subdir: string) => {
+      const data: BlogData = getMdxBlogData(subdir);
+      acc.allPosts.push(...data.allPosts);
+      acc.allTags.push(...data.allTags);
+      return acc;
+    },
+    { allTags: [], allPosts: [] },
+  );
+}
+
+function getMdxBlogData(dir: string): BlogData {
+  const { subdirectories, files, tags } = readDirectory(dir);
+  const BlogDataInSubdirectories: BlogData = gatherSubdirectoryData(subdirectories);
+  return {
+    allTags: tags.concat(BlogDataInSubdirectories.allTags),
+    allPosts: files.concat(BlogDataInSubdirectories.allPosts),
   };
 }
 
