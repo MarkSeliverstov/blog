@@ -98,6 +98,23 @@ function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
   );
 }
 
+function BlogImageHeader({
+  imagePath,
+}: {
+  imagePath: string | undefined;
+}): Readonly<React.ReactNode> {
+  if (!imagePath) {
+    return null;
+  }
+  return (
+    <img
+      src={imagePath}
+      alt="Blog post header image"
+      className="w-full h-64 object-cover rounded-lg mt-4 mb-8"
+    />
+  );
+}
+
 export default function Blog({
   params,
 }: {
@@ -119,6 +136,7 @@ export default function Blog({
           __html: seoScript(post.metadata, post.slug),
         }}
       />
+      <BlogImageHeader imagePath={post.metadata.image} />
       <BlogTitle post={post} />
       <Tags names={post.metadata.tags} />
       <article className="prose">
