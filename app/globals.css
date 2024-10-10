@@ -44,7 +44,7 @@ body {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em] hover:text-blue-500 hover:decoration-blue-500 dark:hover:decoration-blue-500;
 }
 
 .prose .anchor:after {
@@ -78,14 +78,18 @@ h1 {
 }
 
 .prose h2 {
-  @apply text-2xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-3xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  @apply text-2xl font-medium tracking-tight mt-6 mb-2;
 }
 
 .prose h4 {
+  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+}
+
+.prose h5 {
   @apply text-lg font-medium tracking-tight mt-6 mb-2;
 }
 
@@ -128,6 +132,11 @@ h1 {
 /* Add margin down to last li*/
 .prose li:last-child {
   @apply mb-4;
+}
+
+/* Add margin up to first li*/
+.prose li:first-child {
+  @apply mt-4;
 }
 
 pre::-webkit-scrollbar {
