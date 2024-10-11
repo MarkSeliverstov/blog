@@ -111,7 +111,7 @@ function BlogImageHeader({
     <img
       src={imagePath}
       alt="Blog post header image"
-      className="w-fit h-48 object-cover rounded-lg mt-4 mb-8"
+      className="w-full h-48 object-cover rounded-lg mt-4 mb-8"
     />
   );
 }
