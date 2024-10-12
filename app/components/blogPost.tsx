@@ -24,7 +24,7 @@ export function BlogPosts(): Readonly<React.ReactNode> {
               {post.metadata.image && (
                 <img
                   src={post.metadata.image}
-                  className="h-auto w-32 object-contain hidden sm:block rounded-l-lg"
+                  className="h-auto w-32 object-cover hidden sm:block rounded-l-lg"
                   alt={post.metadata.title}
                 />
               )}
