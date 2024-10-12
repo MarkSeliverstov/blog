@@ -1,7 +1,6 @@
 import { getBlogPosts } from "@/app/blog/utils";
 
 export const baseUrl = "https://mark.seliverstov.dev";
-export const sourceCodeUrl = "https://github.com/MarkSeliverstov/blog";
 
 export const siteMetadata = {
   title: "Mark Seliverstov",
