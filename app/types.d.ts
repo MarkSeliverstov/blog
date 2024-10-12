@@ -1,3 +1,4 @@
+
 type MdxMetadata = {
   title: string;
   date: string;
@@ -15,4 +16,8 @@ type MdxFile = {
 type BlogData = {
   allTags: string[];
   allPosts: MdxFile[];
+};
+
+type ClassNameProps = {
+  className?: string;
 };
