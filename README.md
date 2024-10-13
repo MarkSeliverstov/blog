@@ -2,9 +2,14 @@
 
 ### TODO
 
+**General:**
+
+- [ ] Add projects tab
+- [ ] Update README.md
+
 **SEO:**
 
-- [ ] Add Open Graph meta tags
-- [ ] Add Twitter Card meta tags
+- [x] Add Open Graph meta tags
+- [x] Add Twitter Card meta tags
 - [ ] Add Google Analytics
 - [ ] Add robots.txt
