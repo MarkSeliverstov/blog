@@ -4,7 +4,8 @@
 
 **General:**
 
-- [ ] Add projects tab
+- [ ] Add projects page
+- [ ] Add projects page
 - [ ] Update README.md
 
 **SEO:**
