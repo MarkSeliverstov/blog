@@ -7,7 +7,7 @@ export function Tags({
 }): Readonly<React.ReactNode> {
   return (
     <div className="w-full flex flex-row space-x-2 items-center pt-2">
-      {names.map((tag) => (
+      {names !== undefined && names.map((tag) => (
         <Tag name={tag} key={tag} />
       ))}
     </div>

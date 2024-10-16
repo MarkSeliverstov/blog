@@ -12,7 +12,7 @@ function readDirectory(dir: string): { subdirectories: string[], files: MdxFile[
       subdirectories.push(path.join(dir, dirent.name));
     } else if (path.extname(dirent.name) === ".mdx") {
       const fileData = processMdxFile(dir, dirent.name);
-      tags.push(...fileData.tags);
+      if (fileData.tags) tags.push(...fileData.tags);
       files.push(fileData.file);
     }
   });
