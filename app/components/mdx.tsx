@@ -1,4 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 
 import Code from "./code";
 import Link from "next/link";
@@ -93,5 +94,11 @@ const components = {
 };
 
 export function CustomMDX(props: any): React.ReactElement { // eslint-disable-line
-  return <MDXRemote {...props} components={components} />;
+  return (
+    <MDXRemote
+      {...props}
+      components={components}
+      options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+    />
+  );
 }
