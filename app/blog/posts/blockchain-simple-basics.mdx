@@ -1,0 +1,171 @@
+---
+title: "Blockchain Simple Basics"
+summary: "A grain of blockchain basics - just my notes when I was learning about blockchain."
+tags: ["blockchain", "theory"]
+date: "2024-10-17"
+image: "/assets/images/blockchain-icon.png"
+---
+
+- [32 hours of blockchain :D](https://www.youtube.com/watch?v=gyMwXuJrbJQ)
+- [ETH docs](https://ethereum.org/en/developers/docs/)
+- [ETH whitepaper](https://ethereum.org/en/whitepaper/) - great to understand
+  how ETH really works.
+- [TON whitepaper](https://docs.ton.org/ton.pdf) - really smatrt blockchain :)
+
+This post is just a grain of very basic blockchain theory. I am not an expert
+in blockchain technology, but I am super excited about it. I love to share my
+excitement and knowledge here :D
+
+## New internet?
+
+-  1.0: Static web pages
+-  2.0: Dynamic web pages
+-  3.0: Decentralized web page. This is where we are going. A decentralized
+   web page is a web page that is hosted on a decentralized network. It is
+   not hosted on a single server. It is hosted on a decentralized network.
+   It is not controlled by a single entity. It is controlled by the
+   network. It is censorship resistant. It is permissionless. It is
+   transparent. It is trustless. It is open source. It is decentralized. It
+   is immutable.
+
+
+### Purpose of Blockchain
+
+- **Decentralization** - It is not controlled by a single entity and it is
+  controlled by the network. 
+- **Immutability** - It cannot be changed once deployed.
+- **Security** - It is secure because it is decentralized and immutable.
+- **Transparency** - Each transaction is visible to everyone.
+- **Trustless** - You do not need to trust anyone to use it.
+- **Open Source** - The code is open source. Anyone can see it.
+
+### Minuses of Blockchain
+
+- **Speed** - Blockchain is not so fast, because consensus algorithm use a lot
+  of time to verify transactions.
+- **Cost** - Creating a blockchain network is expensive. It requires a lot of
+  computational power and energy.
+- **Scalability** - Blockchain networks can become slower and less efficient as
+  the number of participants and transactions increases.
+- **Energy Consumption** - Blockchain, especially proof-of-work systems like
+  Bitcoin, requires significant computational power and contributes to high
+  energy consumption.
+
+## How do blockchains work?
+
+[Blockchain Demo](https://andersbrownworth.com/blockchain/) - A visual demo of
+blockchain working.
+
+
+|Block 1|
+|---|
+|Number of the block|
+|Nonce|
+|Hash of the previous block|
+|Hash of the current block|
+
+### Structure of the blocks
+
+- *Hash* - A unique fixed-length string that identifies data. Created by
+  hashing algorithms. Hashing algorithms are one-way functions.
+
+- *Block* - A block is a collection of data. It contains a block header and a
+  block body. The block header contains the hash of the previous block, the
+  hash of the block body, and the nonce. The block body contains the
+  transactions.
+
+- *Genesis block* - The first block in the blockchain
+
+- *Nonce* - A nonce is a number that is used to change the hash of the block..
+  It is used to change the hash of the block header. Miners solve a
+  cryptographic puzzle to find the nonce. 
+
+
+If we break the hash of the block one block, we break the hash of all the
+blocks that follow.
+
+- *Private key* - A private key is a secret number that is used to sign
+  transactions
+
+- *Public key* - A public key is a number that is derived from the private key.
+  It is used to verify transactions. Use to verify that a transaction came from
+  you.
+
+**Private key -> Public key -> Address**
+
+- Each transaction **burn**(destroy) some ETH and part of it goes to the miner
+  = **transaction fee**
+
+### Consensus algorithms
+
+- **Proof of work** - Miners compete to solve a cryptographic puzzle. The first
+  miner to solve the puzzle gets to add the next block to the blockchain. The
+  miner is rewarded with ETH. The miner is also rewarded with the transaction
+  fees. The miner is also rewarded with the block reward. Uses a lot of energy.
+
+- **Proof of stake** - Validators are chosen based on the amount of ETH they
+  stake. The validators are responsible for adding the next block to the
+  blockchain. The validators are rewarded with ETH. The validators are also
+  rewarded with the transaction fees. Uses less energy, becouse validators are
+  chosen based on the amount of ETH they stake, but it is not so secure as
+  proof of work, becouse validators can be chosen based on the amount of ETH
+  they stake.
+
+- **Nakamoto consensus** - The consensus algorithm used by Bitcoin. It is a
+  proof of work consensus algorithm.
+
+- **Shardding** - Blockchain in the blockchain
+
+### Layers of blockchain
+
+- **Layer 1** - The base layer. The blockchain itself. Ethereum, Bitcoin, etc.
+
+- **Layer 2** - Any app that runs on top of the blockchain. For example, a
+  decentralized exchange, a decentralized social network, a decentralized
+  marketplace, etc. 
+**Difference between ETH and BTC** - ETH is programmable, and BTC is not. ETH
+is a platform for building decentralized applications, while BTC is just a
+store of value.
+
+### Smart Contracts
+
+- Cannot be changed once deployed (immutable)
+- Automatically execute when certain conditions are met (trustless)
+- Everyone can see the code (transparent)
+- Cannot be stopped (censorship resistant)
+
+### Transaction structure
+
+Transtctions are stored in the blocks. Each transaction has the following
+fields:
+
+- Transaction hash - The unique identifier of the transaction for the blockchain.
+- Block number - The number of the block for the blockchain.
+- From | To - The address of the sender and the receiver.
+- Value - The amount of ETH sent.
+- Fee - The amount of ETH paid to the miner for the transaction.
+- Gas limit and usage gas - The maximum amount of gas that can be used for the transaction.
+
+[Gas and fees | ethereum.org](https://ethereum.org/en/developers/docs/gas/) -
+Gas is the unit of computation on the Ethereum blockchain. Gas is used to pay
+for transactions. Gas is used to pay for smart contract execution. Gas is used
+to pay miners and validators...
+
+`Transaction fee = gas_price * usage_gas` \
+The more people send transactions at the same time, the more gas price
+increases.
+
+## Additional terms
+
+**Blockchain Oracle** - A blockchain oracle is a way to get data from the
+outside world into the blockchain. For example, if you want to build a
+decentralized application that uses the weather, you need a way to get the
+weather data into the blockchain. This is where a blockchain oracle comes in.
+It is a way to get data from the outside world into the blockchain.
+[Chainlink](https://chain.link/) is a popular blockchain oracle.
+
+**Dapp** - A decentralized application. A dapp is an application that runs on a
+decentralized network. It is not controlled by a single entity but by the
+network. It is immutable.
+
+
