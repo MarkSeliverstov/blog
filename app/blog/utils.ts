@@ -83,7 +83,7 @@ function getRelativeDate(targetDate: Date): string | null {
 
 export function formatDate(
   date: string,
-  includeRelative: boolean = true,
+  includeRelative: boolean = false,
 ): string {
   if (!date.includes("T")) {
     date = `${date}T00:00:00`;

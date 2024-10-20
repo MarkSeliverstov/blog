@@ -39,7 +39,7 @@ export function BlogPosts(): Readonly<React.ReactNode> {
                   </p>
 
                   <p className="text-neutral-600 dark:text-neutral-400 tabular-nums align-center text-sm">
-                    {formatDate(post.metadata.date, true)}
+                    {formatDate(post.metadata.date)}
                   </p>
                 </div>
 
