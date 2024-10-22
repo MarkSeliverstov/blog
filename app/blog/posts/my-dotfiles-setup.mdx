@@ -1,0 +1,141 @@
+---
+title: "My dotfiles setup"
+summary: "How I manage my dotfiles and tools that I use."
+tags: ["setup", "dotfiles"]
+date: "2024-10-22"
+---
+
+- [Dotfiles](https://github.com/MarkSeliverstov/.dotfiles)
+
+Everytime I set up a new [Mac]hine, I spend a lot of time (up to 1 day)
+configuring it. I decided to automate this process and make it easier for me to
+set up my development environment. And it definitely worked! Now I can set up
+my Mac in less than 10 minutes.
+
+![Dotfiles setup in just several clicks](/assets/gifs/dotfiles-setup-example.gif)
+
+## Introduction
+
+2 years ago I started using [neovim](https://neovim.io/) as my main editor and
+I wanted to have a way to keep my configuration files in sync as I often switch
+between different machines. Since then I've just created a [git
+repository](https://github.com/MarkSeliverstov/nvim) with my configuration.
+It's been working fine, when I need to set up a new machine I just clone the
+repository to `~/.config/nvim` (I'm using unix-like os) and I'm good to go with
+all my plugins and settings.
+
+### I'm too lazy for this
+
+Over time, I started using more CLI tools, and my dotfiles collection kept
+growing. Each tool had its own configuration files that I wanted to keep in
+sync, which became a bit of a pain. Managing and installing everything on a new
+machine wasn’t difficult, but it was definitely time-consuming. I had to find
+and install each tool, then manually copy over the configuration files to the
+right locations. The last time I set up a new machine from scratch, it ended up
+taking me a few hours to get everything in place... So, probably it was time to
+automate this process.
+
+In this post, I'll share how I manage my dotfiles and give you some tips on how
+to do it better. Also, you can check out [what tools I use in my daily work].
+
+## Dotfiles management
+
+#### **1. Dotfiles repository**
+
+First of all, you need to create a git repository to store your dotfiles. It
+will help you to keep track of changes and easily sync them across different
+machines.
+
+#### **2. Symlinks**
+
+The idea is to create symlinks from the dotfiles in your repository to the
+actual files in your home directory. This way, you can keep all your
+configuration files in one place and easily sync them across different
+machines.
+
+> **Example**: Let's say you have a `.zshrc` file in your dotfiles repository. To
+create a symlink to this file in your home directory, you can run the following
+command:
+>
+>```bash
+>ln -s ~/<path_to_your_dotfiles>/.zshrc ~/.zshrc
+>```
+>
+>It will create a symlink from `~/.zshrc` to `~/<path_to_your_dotfiles>/.zshrc`.
+Any changes you make to the `.zshrc` file in your dotfiles repository will be
+reflected in the symlinked file in your home directory.
+
+**Hooray, you no longer need to manually copy over configuration files every time
+you set up or change something!**
+
+#### **3. Installation script**
+
+This is where the magic happens. You can create an installation script that
+automates the process of setting up your development environment. The script
+should install all the necessary tools and create symlinks for your dotfiles.
+
+**Example**: Here's a simple installation script that installs (symlinks) all
+my dotfiles:
+
+```bash
+#!/bin/bash
+
+# Define what dotfiles to link
+DOTFILES_TO_LINK=(
+    bin
+    .config
+    .tmux
+    .tmux.conf
+    .zshrc
+    .hushlogin
+    .gitconfig
+    .gitignore_global
+)
+
+# Links each file from the dotfiles repository to the home directory
+link_file () {
+    local src=$1 dst=$2
+    base_dst=$(basename "$dst")
+
+    if [ -e "$dst" ]; then
+        if ask_user "$HOME/$base_dst already exists in your system. Overwrite it? [y/n]"; then
+            rm -rf "$dst"
+        else
+            info "skipped $base_dst"
+            return
+        fi
+    fi
+
+    ln -sf "$src" "$dst"
+    success "linked $base_dst"
+}
+
+# Install dotfiles
+install_dotfiles () {
+    if ! ask_user "Do you want to link dotfiles? [y/n]"; then
+        info "skipped linking dotfiles"
+        return
+    fi
+    info "Linking dotiles"
+    for file in "${DOTFILES_TO_LINK[@]}"; do
+        link_file "$DOTFILES_ROOT/$file" "$HOME/$file"
+    done
+    success "dotfiles linked"
+}
+```
+
+This is only a part of my installation script. I have also other things:
+
+- Installation MacOS applications using [brew](https://brew.sh/) 
+- Installation of MacOS settings
+- Installation of zsh and oh-my-zsh with plugins
+- Installation other tools like tmux, fzf, etc.
+
+You can check out the full scripts in my [dotfiles
+repository](https://github.com/MarkSeliverstov/.dotfiles) (`/scripts` folder).
+
+## Conclusion
+
+I spent a lot of time setting up my development environment. I like to explore
+new tools and configurations, and I am really glad that I have found a way to
+automate this process!
