@@ -14,9 +14,7 @@ my Mac in less than 10 minutes.
 
 ![Dotfiles setup in just several clicks](/assets/gifs/dotfiles-setup-example.gif)
 
-## Introduction
-
-2 years ago I started using [neovim](https://neovim.io/) as my main editor and
+## Introduction 2 years ago I started using [neovim](https://neovim.io/) as my main editor and
 I wanted to have a way to keep my configuration files in sync as I often switch
 between different machines. Since then I've just created a [git
 repository](https://github.com/MarkSeliverstov/nvim) with my configuration.
@@ -68,7 +66,38 @@ reflected in the symlinked file in your home directory.
 **Hooray, you no longer need to manually copy over configuration files every time
 you set up or change something!**
 
-#### **3. Installation script**
+#### **3. Brewfile**
+
+If you're using [Homebrew](https://brew.sh/) on MacOS, you can create a
+`Brewfile` to list all the packages you want to install. This way, you can
+easily install all the necessary tools with a single command.
+
+> **Example**: Here's an example `Brewfile` that lists some of the tools I use:
+>```ruby
+>...
+># Basic
+>brew "git"
+>brew "gh"
+>brew "wget"
+>brew "tree"
+>brew "bat"
+># CLI tools
+>brew "tmux"
+>brew "lazydocker"
+>brew "lazygit"
+>brew "neovim"
+>brew "fzf"
+>brew "ripgrep"
+>...
+>```
+
+To install all the packages listed in the `Brewfile`, you can run the following
+command:
+```bash
+brew bundle install --file=Brewfile
+```
+
+#### **4. Installation script**
 
 This is where the magic happens. You can create an installation script that
 automates the process of setting up your development environment. The script
