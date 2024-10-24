@@ -1,4 +1,5 @@
 import Socials from "@/app/components/socials";
+import Link from "next/link";
 
 export default function Home(): Readonly<React.ReactNode> {
   return (
@@ -9,19 +10,19 @@ export default function Home(): Readonly<React.ReactNode> {
         <p className="md:text-2xl mt-8 text-lg">
           Software Engineer with a passion for back-end development and cloud
           solutions. If you’re looking to contact me, you can write me an
-          <a
+          <Link
             href="mailto:seliverstovmd@gmail.com"
             className="underline p-1 hover:text-neutral-500"
           >
             {"email"}
-          </a>
+          </Link>
           .
         </p>
         <p className="md:text-2xl mt-4 text-lg">
           Also, I have a
-          <a href="/blog" className="underline p-1 hover:text-neutral-500">
+          <Link href="/blog" className="underline p-1 hover:text-neutral-500">
             {"blog"}
-          </a>
+          </Link>
           where I just started to write my thoughts, tricks and other stuff
           about software development .
         </p>
