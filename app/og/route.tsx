@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 import { baseUrl } from "@/app/sitemap";
 
+export const dynamic = 'force-static'; // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#runtime
+
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);

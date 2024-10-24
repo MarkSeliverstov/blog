@@ -4,21 +4,24 @@ import { Suspense } from "react";
 import { baseUrl } from "@/app/sitemap";
 import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
-import { Metadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 import { BuyMeCoffee } from "@/app/components/buyMeCoffee";
 import Image from "next/image";
 
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
 /* used to generate metadata for dynamic pages */
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const post = getBlogPosts().allPosts.find(
-    (post) => post.slug === params.slug,
-  );
+export async function generateMetadata(
+  props: Props,
+  parent: ResolvingMetadata, // eslint-disable-line @typescript-eslint/no-unused-vars
+): Promise<Metadata> {
+  const params = await props.params;
+  const post = getBlogPosts().allPosts.find((post) => post.slug === params.slug);
   if (!post) {
-    return { title: "Post not found" };
+    return Promise.reject("Post not found");
   }
 
   const {
@@ -119,11 +122,10 @@ function BlogImageHeader({
   );
 }
 
-export default function Blog({
-  params,
-}: {
-  params: { slug: string };
-}): Readonly<React.ReactNode> {
+export default async function Blog(props: {
+  params: Promise<{ slug: string }>;
+}): Promise<Readonly<React.ReactNode>> {
+  const params = await props.params;
   const post = getBlogPosts().allPosts.find(
     (post) => post.slug === params.slug,
   );
