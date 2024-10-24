@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import Code from "./code";
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 function CustomLink(props: {
   href: string;
@@ -43,7 +44,7 @@ function RoundedImage({
 }): React.ReactElement {
   return (
     <span>
-      <img alt={alt} {...rest} />
+      <Image alt={alt} width={600} height={1024} {...rest} />
       {alt && <span className="image-caption">[{alt}]</span>}
     </span>
   );

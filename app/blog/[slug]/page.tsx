@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Tags } from "@/app/components/tags";
 import { Metadata } from "next";
 import { BuyMeCoffee } from "@/app/components/buyMeCoffee";
+import Image from "next/image";
 
 /* used to generate metadata for dynamic pages */
 export function generateMetadata({
@@ -108,7 +109,9 @@ function BlogImageHeader({
     return null;
   }
   return (
-    <img
+    <Image
+      width={500}
+      height={500}
       src={imagePath}
       alt="Blog post header image"
       className="w-full h-48 object-cover rounded-lg mt-4 mb-8"

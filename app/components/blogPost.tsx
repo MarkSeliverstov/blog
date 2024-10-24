@@ -1,6 +1,7 @@
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { Tags } from "./tags";
 import Link from "next/link";
+import Image from "next/image";
 
 export function BlogPosts(): Readonly<React.ReactNode> {
   const blog: BlogData = getBlogPosts();
@@ -22,7 +23,9 @@ export function BlogPosts(): Readonly<React.ReactNode> {
           >
             <div className="flex flex-row">
               {post.metadata.image && (
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src={post.metadata.image}
                   className="h-auto w-32 object-cover hidden sm:block rounded-l-lg"
                   alt={post.metadata.title}
