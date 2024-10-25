@@ -1,4 +1,3 @@
-
 type MdxMetadata = {
   title: string;
   date: string;
@@ -20,4 +19,12 @@ type BlogData = {
 
 type ClassNameProps = {
   className?: string;
+};
+
+type Project = {
+  title: string;
+  description: string;
+  tags: string[];
+  image?: string;
+  link: string;
 };

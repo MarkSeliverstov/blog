@@ -19,7 +19,7 @@ export function ProjectCard({ project }: props): Readonly<React.ReactNode> {
             width={1024}
             height={1024}
             src={project.image}
-            className="rounded-t-lg object-cover"
+            className="rounded-t-lg object-cover h-32"
             alt={project.title}
           />
         )}

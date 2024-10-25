@@ -10,9 +10,9 @@ const navItems: Record<string, { name: string; href?: string }> = {
   "/blog": {
     name: "blog",
   },
-  // "/projects": {
-  //   name: "projects",
-  // },
+  "/projects": {
+    name: "projects",
+  },
   // "/assets/pdfs/resume.pdf": {
   //   name: "resume",
   // },
