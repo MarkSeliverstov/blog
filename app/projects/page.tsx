@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { projects } from "@/app/projects/data";
 import { ProjectCard } from "@/app/components/projectCard";
 
-export const metadata: Metadata = { title: "Blog" };
+export const metadata: Metadata = { title: "Projects" };
 
 export default function Page(): Readonly<React.ReactNode> {
   return (
