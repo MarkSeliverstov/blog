@@ -9,7 +9,7 @@ export default function Home(): Readonly<React.ReactNode> {
         <Socials className="text-2xl" />
         <p className="md:text-2xl mt-8 text-lg">
           Software Engineer with a passion for back-end development and cloud
-          solutions. If you’re looking to contact me, you can write me an
+          solutions. If you would like to connect, feel free to drop me a message on
           <Link
             href="mailto:seliverstovmd@gmail.com"
             className="underline p-1 hover:text-neutral-500"
@@ -19,12 +19,12 @@ export default function Home(): Readonly<React.ReactNode> {
           .
         </p>
         <p className="md:text-2xl mt-4 text-lg">
-          Also, I have a
+          I’ve also started a
           <Link href="/blog" className="underline p-1 hover:text-neutral-500">
             {"blog"}
           </Link>
-          where I just started to write my thoughts, tricks and other stuff
-          about software development .
+          where I share my thoughts, tips, and insights on software development.
+          Feel free to check it out!
         </p>
       </div>
     </section>
