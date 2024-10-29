@@ -24,7 +24,6 @@ export default function Home(): Readonly<React.ReactNode> {
             {"blog"}
           </Link>
           where I share my thoughts, tips, and insights on software development.
-          Feel free to check it out!
         </p>
       </div>
     </section>
