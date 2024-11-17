@@ -1,0 +1,58 @@
+---
+title: "Telegram Finance Manager (TFM)"
+summary: "Telegram Finance Manager (TFM) is a Telegram bot that helps you manage your finances using voice messages and AI."
+tags: ["telegram", "finance", "AI"]
+date: "2024-11-17"
+image: ""
+---
+
+- [TFM Bot](https://t.me/tg_finance_manager_bot)
+- [GitHub](https://github.com/MarkSeliverstov/tfm)
+
+TFM is a Telegram bot that helps you manage your finances. The main feature is
+to convert your voice messages into transactions using [OpenAI's Speech-to-Text
+API](https://platform.openai.com/docs/guides/speech-to-text).
+
+## Why?
+
+Today, almost every bank offers its own mobile application for managing
+finances , but these apps aren’t always user-friendly, especially when it comes
+to viewing statistics or analyzing your expenses. I wanted to create a simple,
+convenient tool for managing finances, accessible directly through a messaging
+platform. Using AI to convert voice messages into text is a fantastic way to
+streamline the process - for example, you can simply say, "I spent 10 dollars
+on coffee," and the bot will understand and process it.
+
+## What?
+
+You say something like *"I spent 10 dollars on coffee"* and the bot will process
+this command and update your financial records accordingly - deducting 10
+dollars from your balance and adding a description (e.g., "coffee") to your
+transactions. The bot can also provide you with a summary of your account.
+
+The bot can handle multiple users, so you don't need to run your own instance.
+
+PS. Currently, the bot is in the early stages of development, and actually I
+don't have a lot of time to work on it, but I hope to add more features in the
+future.
+
+## How?
+
+Initially, I decided it would be great to use [Google
+Sheets](https://workspace.google.com/products/sheets/) as a database for
+storing financial records. This approach allows users to easily analyze and
+manipulate their data as they see fit. However, this requires the bot to access
+the [Google Sheets
+API](https://developers.google.com/sheets/api/guides/concepts), which is
+slightly more complex than using a traditional database. As a result, each user
+needs their own instance of the bot, along with a personal Google Service
+Account.
+
+Later, I decided to switch to a more traditional database, for allowing
+multiple users to use the bot without the need for a personal instance.
+
+The bot is built using Python and the [aiogram](https://aiogram.dev/) library.
+It uses OpenAI's Speech-to-Text API to convert voice messages into text. For
+the database, I chose PostgreSQL.
+
+

@@ -8,7 +8,7 @@ type props = {
 
 export function ProjectCard({ project }: props): Readonly<React.ReactNode> {
   return (
-    <div>
+    <div className="break-inside-avoid mb-4">
       <Link
         key={project.title}
         className="flex flex-col space-y-1 mb-2 hover:bg-neutral-200 dark:hover:bg-neutral-800 rounded-lg border border-neutral-200 dark:border-neutral-700"

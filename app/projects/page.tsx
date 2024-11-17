@@ -10,7 +10,7 @@ export default function Page(): Readonly<React.ReactNode> {
       <p className="text-neutral-900 dark:text-neutral-100 text-lg mb-4">
         These are some of the projects I&apos;ve worked on.
       </p>
-      <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="columns-3">
         {projects.map((project: Project) => (
           <ProjectCard key={project.title} project={project} />
         ))}

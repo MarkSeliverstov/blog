@@ -22,12 +22,18 @@ export const projects: Project[] = [
     tags: ["Bash"],
     link: "https://github.com/MarkSeliverstov/.dotfiles",
   },
-
   {
     title: "Blog",
     description:
       "Personal website where I write about programming, technology, and other topics.",
     tags: ["React", "TypeScript", "Next.js"],
     link: baseUrl,
+  },
+  {
+    title: "Telegram Finance Manager",
+    description:
+      "Telegram bot for managing personal finances. Allows users to track expenses, income, and account balances. The main feature is the ability to send commands to the bot via voice messages. The bot uses AI to recognize the user's voice and process the command.",
+    tags: ["Python", "PostgreSQL", "Aiogram"],
+    link: "https://github.com/MarkSeliverstov/tfm",
   },
 ];
