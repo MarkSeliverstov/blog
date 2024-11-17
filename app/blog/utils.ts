@@ -2,7 +2,11 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
-function readDirectory(dir: string): { subdirectories: string[], files: MdxFile[], tags: string[] } {
+function readDirectory(dir: string): {
+  subdirectories: string[];
+  files: MdxFile[];
+  tags: string[];
+} {
   const tags: string[] = [];
   const files: MdxFile[] = [];
   const subdirectories: string[] = [];
@@ -20,13 +24,18 @@ function readDirectory(dir: string): { subdirectories: string[], files: MdxFile[
   return { subdirectories, files, tags };
 }
 
-function processMdxFile(dir: string, fileName: string): { file: MdxFile, tags: string[] } {
+function processMdxFile(
+  dir: string,
+  fileName: string,
+): { file: MdxFile; tags: string[] } {
   const rawContent: string = fs.readFileSync(path.join(dir, fileName), "utf-8");
   const matterResult: matter.GrayMatterFile<string> = matter(rawContent);
 
   const metadata: MdxMetadata = matterResult.data as MdxMetadata;
   const content: string = matterResult.content;
-  const slug: string = path.basename(fileName, path.extname(fileName)).replace(".mdx", "");
+  const slug: string = path
+    .basename(fileName, path.extname(fileName))
+    .replace(".mdx", "");
 
   return {
     file: {
@@ -52,7 +61,8 @@ function gatherSubdirectoryData(subdirectories: string[]): BlogData {
 
 function getMdxBlogData(dir: string): BlogData {
   const { subdirectories, files, tags } = readDirectory(dir);
-  const BlogDataInSubdirectories: BlogData = gatherSubdirectoryData(subdirectories);
+  const BlogDataInSubdirectories: BlogData =
+    gatherSubdirectoryData(subdirectories);
   return {
     allTags: tags.concat(BlogDataInSubdirectories.allTags),
     allPosts: files.concat(BlogDataInSubdirectories.allPosts),

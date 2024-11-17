@@ -8,17 +8,17 @@ export default function Footer() {
       <Socials className="text-2xl pb-4" />
       <p className="font-sm">Maintained by Mark Seliverstov</p>
       <div className="flex items-center space-x-2">
-      <p className="mt-0">© {new Date().getFullYear()} MIT Licensed</p>
-      <span>•</span>
-      <a
-        className="flex items-center hover:text-blue-500"
-        rel="noopener noreferrer"
-        target="_blank"
-        href={siteMetadata.sourceCodeUrl}
-      >
-        <MdArrowOutward />
-        <p className="ml-1">view source</p>
-      </a>
+        <p className="mt-0">© {new Date().getFullYear()} MIT Licensed</p>
+        <span>•</span>
+        <a
+          className="flex items-center hover:text-blue-500"
+          rel="noopener noreferrer"
+          target="_blank"
+          href={siteMetadata.sourceCodeUrl}
+        >
+          <MdArrowOutward />
+          <p className="ml-1">view source</p>
+        </a>
       </div>
     </footer>
   );

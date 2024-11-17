@@ -9,7 +9,8 @@ export default function Home(): Readonly<React.ReactNode> {
         <Socials className="text-2xl" />
         <p className="md:text-2xl mt-8 text-lg">
           Software Engineer with a passion for back-end development and cloud
-          solutions. If you would like to connect, feel free to drop me a message on
+          solutions. If you would like to connect, feel free to drop me a
+          message on
           <Link
             href="mailto:seliverstovmd@gmail.com"
             className="underline p-1 hover:text-neutral-500"

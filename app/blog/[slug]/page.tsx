@@ -19,7 +19,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata, // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Promise<Metadata> {
   const params = await props.params;
-  const post = getBlogPosts().allPosts.find((post) => post.slug === params.slug);
+  const post = getBlogPosts().allPosts.find(
+    (post) => post.slug === params.slug,
+  );
   if (!post) {
     return Promise.reject("Post not found");
   }

@@ -1,5 +1,5 @@
 import { getBlogPosts } from "@/app/blog/utils";
-export const dynamic = 'force-static'; // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#runtime
+export const dynamic = "force-static"; // https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#runtime
 export const baseUrl = "https://mark.seliverstov.dev";
 
 export const siteMetadata = {

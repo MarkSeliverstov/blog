@@ -6,7 +6,12 @@ function createSocialLink(
   href: string,
 ): Readonly<React.ReactNode> {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:text-blue-500"
+    >
       <Icon />
     </a>
   );
