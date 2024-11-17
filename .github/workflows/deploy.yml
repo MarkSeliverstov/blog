@@ -30,7 +30,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "latest"
+          node-version: "23.1.0" # IMPORTANT: Update will break the build
           cache: pnpm
 
       - name: Setup Pages
