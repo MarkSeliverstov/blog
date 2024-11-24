@@ -33,7 +33,7 @@ export const projects: Project[] = [
     title: "Telegram Finance Manager",
     description:
       "Telegram bot for managing personal finances. Allows users to track expenses, income, and account balances. The main feature is the ability to send commands to the bot via voice messages. The bot uses AI to recognize the user's voice and process the command.",
-    tags: ["Python", "PostgreSQL", "Aiogram"],
+    tags: ["Python", "PostgreSQL", "AI", "Speech Recognition"],
     link: "https://github.com/MarkSeliverstov/tfm",
   },
 ];
