@@ -1,8 +1,8 @@
 type MdxMetadata = {
-  title: string;
-  date: string;
-  summary: string;
-  tags: string[];
+  title?: string;
+  date?: string;
+  summary?: string;
+  tags?: string[];
   image?: string;
 };
 
