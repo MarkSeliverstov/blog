@@ -1,0 +1,55 @@
+---
+title: "The best tiling window manager for macOS?"
+summary: "Aerospace - i3 for macOS"
+tags: ["dev-tools"]
+date: "2025-03-21"
+image: ""
+---
+
+![AeroSpace Git Stars](/assets/images/aerospace-git.png)
+
+### Quick intro
+
+For years, I struggled to find a tiling window manager that met all my requirements:
+
+1. Fast switching between workspaces and windows – I can’t stand the default macOS delay when switching windows.
+2. Good default keybindings and base configuration, along with proper documentation.
+3. Fully customizable keybindings – I want the ability to bind any action to a key.
+4. Highly customizable – I need complete control over my setup.
+5. Declarative configuration – So I can version it in Git and reuse it across machines.
+6. Free and better open-source
+
+The only tiling window manager that checked all these boxes was [i3](https://github.com/i3/i3), but unfortunately, it's only available for Linux. I love macOS, so this was a sad story :(
+
+For many years, I used [yabai](https://github.com/koekeishiya/yabai), which was the best macOS alternative, fulfilling almost all my needs.
+However, it had some issues - it could be laggy and buggy sometimes.
+Plus, to unlock its full potential, you had to partially disable [System Integrity Protection](https://developer.apple.com/documentation/security/disabling-and-enabling-system-integrity-protection), which always felt like a hack.
+
+### Enter AeroSpace
+
+- [nikitabobko/AeroSpace](https://github.com/nikitabobko/AeroSpace)
+
+Recently, I discovered AeroSpace, a window manager really inspired by i3, and it actually works really well.
+It’s a relatively new project (launched in 2023), yet it has already gained over 10k stars on GitHub.
+
+#### SketchyBar
+
+![My SketchyBar](/assets/images/my-sketchybar.png)
+
+Another fantastic and beautifully designed tool I’ve been using is SketchyBar.
+
+> A highly flexible, customizable, fast, and powerful status bar replacement for people who like playing with shell scripts.
+
+SketchyBar integrates smoothly with AeroSpace, and you can easily display your workspace information in multiple rows within your config.
+I’ve set it up, and here are the configs I’m using:
+
+- [SketchyBar](https://github.com/MarkSeliverstov/.dotfiles/tree/master/.config/sketchybar)
+- [AeroSpace](https://github.com/MarkSeliverstov/.dotfiles/blob/master/.config/aerospace/aerospace.toml)
+
+Both tools complement each other perfectly for a streamlined and customizable experience on macOS.
+
+
+![Basic AeroSpace + SketchyBar usage](/assets/gifs/aerospace.gif)
+
+If you’re looking for a i3-like tiling window manager for macOS without the drawbacks of yabai, AeroSpace is definitely worth checking out!
+
