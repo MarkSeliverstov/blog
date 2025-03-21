@@ -34,9 +34,9 @@ export async function generateMetadata(
   } = post.metadata;
   const ogImage = image
     ? `${baseUrl}${image}`
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(
-        description,
-      )}`;
+    : `${baseUrl}/og?title=${title ? encodeURIComponent(title) : "Title"}&description=${
+        description ? encodeURIComponent(description) : ""
+      }`;
 
   return {
     title,
@@ -81,7 +81,7 @@ function seoScript(metadata: MdxMetadata, slug: string): string {
     description: metadata.summary,
     image: metadata.image
       ? `${baseUrl}${metadata.image}`
-      : `/og?title=${encodeURIComponent(metadata.title)}`,
+      : `/og?title=${metadata.title ? encodeURIComponent(metadata.title) : "Title"}`,
     url: `${baseUrl}/blog/${slug}`,
     author: {
       "@type": "Person",
@@ -98,7 +98,7 @@ function BlogTitle({ post }: { post: MdxFile }): Readonly<React.ReactNode> {
       </h1>
       <div className="flex justify-between items-center mb-2 text-sm">
         <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.date)}
+          {post.metadata.date ? formatDate(post.metadata.date) : "Date"}
         </p>
       </div>
     </div>
@@ -147,7 +147,7 @@ export default async function Blog(props: {
       <BlogImageHeader imagePath={post.metadata.image} />
       <BuyMeCoffee />
       <BlogTitle post={post} />
-      <Tags names={post.metadata.tags} />
+      <Tags names={post.metadata.tags ? post.metadata.tags : []} />
       <article className="prose">
         <Suspense fallback={<>Loading...</>}>
           <CustomMDX source={post.content} />

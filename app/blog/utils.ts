@@ -43,7 +43,7 @@ function processMdxFile(
       slug,
       content,
     },
-    tags: metadata.tags,
+    tags: metadata.tags ? metadata.tags : [],
   };
 }
 
