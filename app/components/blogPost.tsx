@@ -52,7 +52,7 @@ export function BlogPosts(): Readonly<React.ReactNode> {
                 <p className="text-neutral-600 dark:text-neutral-400 text-sm">
                   {post.metadata.summary}
                 </p>
-                {post.metadata.tags && post.metadata.tags?.length > 1 && (
+                {post.metadata.tags && post.metadata.tags?.length > 0 && (
                   <Tags names={post.metadata.tags} />
                 )}
               </div>
